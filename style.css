@@ -7,6 +7,11 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
+.big-title{
+    font-size: 40px;
+    font-weight: 700;
+    color: #5bb1e4;
+}
 a{
     text-decoration: none;
     color: #000;
@@ -110,6 +115,7 @@ h2.separator{
 
 .sell-nft{
     padding: 0 80px;
+    width: 80%;
     margin: 50px 0 80px;
     display: flex;
     justify-content: space-between;
