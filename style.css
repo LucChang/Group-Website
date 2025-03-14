@@ -10,11 +10,19 @@
 .big-title{
     font-size: 40px;
     font-weight: 700;
-    color: #5bb1e4;
+    color: #2a1515;
+    /* color:#edecec; */
+}
+.hub {
+    color: black;
+    background-color: orange;
+    border-radius: 8px;
+
 }
 a{
     text-decoration: none;
     color: #000;
+    /* color: white */
 }
 
 img{
@@ -23,6 +31,7 @@ img{
 
 body{
     background-color: #f1f1f1;
+    /* background-color: #000; */
 }
 
 nav{
@@ -33,33 +42,14 @@ nav{
     height: 80px;
 }
 
-nav a.logo{
-    font-size: 33px;
-    color: #0f2182;
-    font-weight: 600;
-}
 
 nav .links a:not(:last-child){
     margin-right: 20px;
 }
 
-nav .login button{
-    padding: 8px 14px;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-}
-
-nav .login button.signup{
-    background-color: #000;
-    color: #fff;
-    border-radius: 4px;
-    margin-right: 14px;
-}
-
 header{
     padding: 0 80px;
-    height: calc(100vh - 80px);
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,7 +60,7 @@ header .left{
 }
 
 header .left h1{
-    font-size: 80px;
+    font-size: 50px;
 }
 
 header .left h1 span{
@@ -122,13 +112,59 @@ h2.separator{
     gap: 30px;
 }
 
+.about-us {    
+    padding: 0 80px;
+    width: 80%;
+    margin: 50px 0 80px;
+    border-radius: 10px; /* 添加圓角 */
+}
+
+
+
 .sell-nft .item,
-.nft-shop .nft-list .item{
+.nft-shop .nft-list .item,  .content-aboutme{
     padding: 20px;
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+}
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+.mySlides {
+    display: none;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+.content-aboutme {
+    padding: 20px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.show {
+    max-height: 1000px;
+    opacity: 1;
+    transition: max-height 0.8s ease-in, opacity 0.8s ease-in;
+    /* margin-bottom: ; */
 }
 
 .sell-nft .item:hover,
@@ -161,23 +197,6 @@ h2.separator{
     margin-top: 30px;
 }
 
-.nft-shop .category{
-    display: flex;
-    gap: 14px;
-}
-
-.nft-shop .category a{
-    background-color: #dfdcdc;
-    padding: 8px 14px;
-    font-size: 15px;
-    border-radius: 14px;
-    transition: all 0.3s ease;
-}
-
-.nft-shop .category a:hover{
-    color: #fff;
-    background-color: #0f2182;
-}
 
 .nft-shop .nft-list{
     padding: 40px 0;
@@ -254,9 +273,10 @@ h2.separator{
 }
 
 .view-more{
-    margin: 10px 0 40px;
+    margin: 10px 0 30px;
     display: flex;
     justify-content: center;
+    
 }
 
 .view-more button{
@@ -276,16 +296,19 @@ h2.separator{
 
 .sellers{
     padding: 0 80px;
-    margin: 40px 0 80px;
+    margin: 40px 0 20px;
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 30px;
 }
 
 .sellers .item{
     background: #fff;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    width: 25%;
+    width: 20%;
     gap: 14px;
     padding: 14px;
     border-radius: 18px;
