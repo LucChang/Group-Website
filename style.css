@@ -122,7 +122,7 @@ h2.separator{
 
 
 .sell-nft .item,
-.nft-shop .nft-list .item,  .content-aboutme{
+.activity-photos .nft-list .item,  .content-aboutme{
     padding: 20px;
     background: #fff;
     border-radius: 18px;
@@ -168,7 +168,7 @@ h2.separator{
 }
 
 .sell-nft .item:hover,
-.nft-shop .nft-list .item:hover,
+.activity-photos .nft-list .item:hover,
 .sellers .item:hover{
     box-shadow: none;
 }
@@ -192,26 +192,26 @@ h2.separator{
     padding: 0 4px;
 }
 
-.nft-shop{
+.activity-photos{
     padding: 0 80px;
     margin-top: 30px;
 }
 
 
-.nft-shop .nft-list{
+.activity-photos .nft-list{
     padding: 40px 0;
     display: flex;
     justify-content: space-between;
     gap: 20px;
 }
 
-.nft-shop .nft-list .item img{
+.activity-photos .nft-list .item img{
     width: 280px;
     height: 280px;
     border-radius: 18px;
 }
 
-.nft-shop .nft-list .item .info{
+.activity-photos .nft-list .item .info{
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -219,55 +219,55 @@ h2.separator{
     border-bottom: 1px solid #edecec;
 }
 
-.nft-shop .nft-list .item .info h5{
+.activity-photos .nft-list .item .info h5{
     font-size: 18px;
 }
 
-.nft-shop .nft-list .item .info .btc{
+.activity-photos .nft-list .item .info .btc{
     margin-top: 10px;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.nft-shop .nft-list .item .btc i{
+.activity-photos .nft-list .item .btc i{
     font-size: 22px;
     color: #304ffe;
 }
 
-.nft-shop .nft-list .item .btc p{
+.activity-photos .nft-list .item .btc p{
     font-size: 12px;
     color: #304ffe;
 }
 
-.nft-shop .nft-list .item .info > p{
+.activity-photos .nft-list .item .info > p{
     font-size: 12px;
     color: #989898;
 }
 
-.nft-shop .nft-list .item .bid{
+.activity-photos .nft-list .item .bid{
     padding: 14px 0 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.nft-shop .nft-list .item .bid p,
-.nft-shop .nft-list .item .bid a{
+.activity-photos .nft-list .item .bid p,
+.activity-photos .nft-list .item .bid a{
     background-color: #edecec;
     padding: 6px 10px;
     font-size: 13px;
     border-radius: 10px;
 }
 
-.nft-shop .nft-list .item .bid a{
+.activity-photos .nft-list .item .bid a{
     color: #304ffe;
     background: transparent;
     font-weight: bold;
     transition: all 0.3s ease;
 }
 
-.nft-shop .nft-list .item .bid a:hover{
+.activity-photos .nft-list .item .bid a:hover{
     color: #fff;
     background-color: #000;
 }
@@ -388,7 +388,7 @@ footer .right p{
     header,
     h2.separator,
     .sell-nft,
-    .nft-shop,
+    .activity-photos,
     .sellers{
         padding: 0 40px;
     }
@@ -401,7 +401,7 @@ footer .right p{
         width: 540px;
     }
 
-    .nft-shop .nft-list .item img{
+    .activity-photos .nft-list .item img{
         width: 220px;
         height: 220px;
     }
@@ -442,16 +442,16 @@ footer .right p{
         font-size: 13px;
     }
 
-    .nft-shop .nft-list{
+    .activity-photos .nft-list{
         flex-wrap: wrap;
         row-gap: 30px;
     }
 
-    .nft-shop .nft-list .item{
+    .activity-photos .nft-list .item{
         width: 48%;
     }
 
-    .nft-shop .nft-list .item img{
+    .activity-photos .nft-list .item img{
         width: 100%;
         height: auto;
     }
@@ -530,7 +530,7 @@ footer .right p{
     header,
     h2.separator,
     .sell-nft,
-    .nft-shop,
+    .activity-photos,
     .sellers{
         padding: 0 20px;
     }
@@ -586,13 +586,52 @@ footer .right p{
         width: 100%;
     }
 
-    .nft-shop .nft-list .item,
+    .activity-photos .nft-list .item,
     .sellers .item{
         width: 47%;
     }
 
-    .nft-shop .category a{
+    .activity-photos .category a{
         font-size: 13px;
     }
 
 }
+
+
+/* Split Text Animation */
+.split-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.split-heading .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-right: 5px;
+  font-size: 2.5rem;
+}
+
+.split-heading.animate .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 為每個字符設置不同的延遲 */
+.split-heading .char:nth-child(1) { transition-delay: 0.1s; }
+.split-heading .char:nth-child(2) { transition-delay: 0.2s; }
+.split-heading .char:nth-child(3) { transition-delay: 0.3s; }
+.split-heading .char:nth-child(4) { transition-delay: 0.4s; }
+.split-heading .char:nth-child(5) { transition-delay: 0.5s; }
+.split-heading .char:nth-child(6) { transition-delay: 0.6s; }
+.split-heading .char:nth-child(7) { transition-delay: 0.7s; }
+.split-heading .char:nth-child(8) { transition-delay: 0.8s; }
+.split-heading .char:nth-child(9) { transition-delay: 0.9s; }
+.split-heading .char:nth-child(10) { transition-delay: 1.0s; }
+
+
+
+

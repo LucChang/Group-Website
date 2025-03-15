@@ -29,3 +29,34 @@ function showSlides() {
     setTimeout(showSlides, 5000); // Change image every 5 seconds
 }
 
+// Split Text Animation
+document.addEventListener('DOMContentLoaded', function() {
+  // 當頁面載入時觸發動畫
+  setTimeout(function() {
+    const splitHeading = document.querySelector('.split-heading');
+    if (splitHeading) {
+      splitHeading.classList.add('animate');
+    }
+  }, 500); // 延遲 500ms 開始動畫
+  
+  // 當滾動到標題位置時也可以觸發動畫（可選）
+  function checkVisibility() {
+    const splitHeading = document.querySelector('.split-heading');
+    if (!splitHeading) return;
+    
+    const rect = splitHeading.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    
+    if (rect.top <= windowHeight * 0.75) {
+      splitHeading.classList.add('animate');
+    } else {
+      splitHeading.classList.remove('animate');
+    }
+  }
+  
+  // 監聽滾動事件
+  window.addEventListener('scroll', checkVisibility);
+  // 初始檢查
+  checkVisibility();
+});
+
