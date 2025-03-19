@@ -64,90 +64,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 水平滑動照片區域的按鈕控制
 document.addEventListener('DOMContentLoaded', function() {
-    const photoContainer = document.querySelector('.activity-photos');
+    const nftList = document.querySelector('.activity-photos .nft-list');
+    const leftArrow = document.querySelector('.scroll-arrow.scroll-left');
+    const rightArrow = document.querySelector('.scroll-arrow.scroll-right');
     
-    if (photoContainer) {
-        // 添加左右滑動按鈕
-        const leftBtn = document.createElement('button');
-        leftBtn.className = 'scroll-btn scroll-left';
-        leftBtn.innerHTML = '&larr;';
+    if (nftList && leftArrow && rightArrow) {
+        let scrollPosition = 0;
+        const itemWidth = 398; // 項目寬度 + 間距
+        const visibleItems = 3; // 可見項目數量
+        const totalItems = nftList.children.length;
+        const maxScroll = (totalItems - visibleItems) * itemWidth;
         
-        const rightBtn = document.createElement('button');
-        rightBtn.className = 'scroll-btn scroll-right';
-        rightBtn.innerHTML = '&rarr;';
-        
-        const container = document.querySelector('.activity-photos-container');
-        container.appendChild(leftBtn);
-        container.appendChild(rightBtn);
-        
-        // 按鈕點擊事件
-        leftBtn.addEventListener('click', function() {
-            photoContainer.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-        
-        rightBtn.addEventListener('click', function() {
-            photoContainer.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-        
-        // 檢查是否需要顯示按鈕
-        function checkScrollButtons() {
-            const isScrollable = photoContainer.scrollWidth > photoContainer.clientWidth;
-            const atStart = photoContainer.scrollLeft <= 10;
-            const atEnd = photoContainer.scrollLeft >= photoContainer.scrollWidth - photoContainer.clientWidth - 10;
-            
-            leftBtn.style.display = isScrollable && !atStart ? 'block' : 'none';
-            rightBtn.style.display = isScrollable && !atEnd ? 'block' : 'none';
+        // 如果項目數量不超過可見數量，隱藏右箭頭
+        if (totalItems <= visibleItems) {
+            rightArrow.style.display = 'none';
         }
         
-        // 初始檢查和滾動時檢查
-        checkScrollButtons();
-        photoContainer.addEventListener('scroll', checkScrollButtons);
-        window.addEventListener('resize', checkScrollButtons);
+        // 向右滾動
+        rightArrow.addEventListener('click', function() {
+            if (scrollPosition < maxScroll) {
+                scrollPosition += itemWidth;
+                nftList.style.transform = `translateX(-${scrollPosition}px)`;
+                
+                // 顯示左箭頭
+                leftArrow.style.display = 'flex';
+                
+                // 如果到達最右側，隱藏右箭頭
+                if (scrollPosition >= maxScroll) {
+                    rightArrow.style.display = 'none';
+                }
+            }
+        });
+        
+        // 向左滾動
+        leftArrow.addEventListener('click', function() {
+            if (scrollPosition > 0) {
+                scrollPosition -= itemWidth;
+                nftList.style.transform = `translateX(-${scrollPosition}px)`;
+                
+                // 如果回到最左側，隱藏左箭頭
+                if (scrollPosition === 0) {
+                    leftArrow.style.display = 'none';
+                }
+                
+                // 顯示右箭頭
+                rightArrow.style.display = 'flex';
+            }
+        });
     }
 });
 
-// 活動照片區域的滑動控制
-document.addEventListener('DOMContentLoaded', function() {
-    const photoList = document.querySelector('.activity-photos .nft-list');
-    const nextBtn = document.querySelector('.scroll-next-btn');
-    const prevBtn = document.querySelector('.scroll-prev-btn');
-    
-    if (photoList && nextBtn && prevBtn) {
-        let currentPage = 0;
-        const totalItems = photoList.children.length;
-        const itemsPerPage = 4; // 每頁顯示4張照片
-        const totalPages = Math.ceil(totalItems / itemsPerPage);
-        
-        // 如果照片數量不足以滾動，隱藏下一頁按鈕
-        if (totalItems <= itemsPerPage) {
-            nextBtn.style.display = 'none';
-        }
-        
-        // 下一頁按鈕點擊事件
-        nextBtn.addEventListener('click', function() {
-            if (currentPage < totalPages - 1) {
-                currentPage++;
-                updateGallery();
-            }
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(event) {
+        event.preventDefault(); // 阻止默認的錨點行為
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth' // 平滑滾動
         });
-        
-        // 上一頁按鈕點擊事件
-        prevBtn.addEventListener('click', function() {
-            if (currentPage > 0) {
-                currentPage--;
-                updateGallery();
-            }
-        });
-        
-        // 更新畫廊顯示
-        function updateGallery() {
-            const offset = -currentPage * 100; // 100%寬度的偏移
-            photoList.style.transform = `translateX(${offset}%)`;
-            
-            // 顯示/隱藏按鈕
-            prevBtn.style.display = currentPage > 0 ? 'flex' : 'none';
-            nextBtn.style.display = currentPage < totalPages - 1 ? 'flex' : 'none';
-        }
-    }
+    });
 });
 

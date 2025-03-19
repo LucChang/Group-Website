@@ -56,7 +56,7 @@ nav .links a:not(:last-child){
 
 header{
     padding: 0 100px;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,19 +74,13 @@ header .left h1 span{
     color: #0f2182;
 }
 
-header .left p{
-    margin: 40px 0;
-    color: #777;
-}
 
 
 
 
 
-header .left a span{
-    color: #fff;
-    margin-left: 10px;
-}
+
+
 
 header img{
     margin-left: 200px;
@@ -164,12 +158,21 @@ h2.separator{
     max-width: 100%;
     margin: auto;
 }
+
 .mySlides {
     display: none;
 }
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+.mySlides img {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
 }
 @keyframes fade {
     from {opacity: .4} 
@@ -222,34 +225,40 @@ h2.separator{
     padding: 0 4px;
 }
 
-.activity-photos{
-    padding: 0 80px;
-    margin-top: 30px;
+.activity-photos {
+    margin: 30px auto; /* 上下間距30px，左右自動（即置中） */
+    padding: 0;
+    position: relative;
+    width: calc(378px * 3 + 40px); /* 容納三個項目的寬度加間距 */
+    overflow: hidden; /* 隱藏超出部分 */
 }
 
-
-.activity-photos .nft-list{
-    padding: 40px 0;
+.activity-photos .nft-list {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 20px;
+    transition: transform 0.5s ease; /* 平滑過渡效果 */
+    width: max-content; /* 允許容器寬度自適應內容 */
 }
 
 .activity-photos .nft-list .item {
+    flex: 0 0 378px; /* 固定寬度，不縮放 */
+    height: 480px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    padding: 15px; /* 統一設置所有方向的 padding 為相同值 */
-    background-color: #fff; /* 添加背景色以便 padding 可見 */
+    padding: 15px;
+    background-color: #fff;
 }
 
 .activity-photos .nft-list .item img {
     width: 100%;
-    height: 200px;
+    height: calc(100% - 30px); /* 減去padding */
     object-fit: cover;
     display: block;
-    border-radius: 5px; /* 可選：為圖片添加圓角 */
+    border-radius: 5px;
 }
 
 .activity-photos .nft-list .item .info{
@@ -484,7 +493,7 @@ footer .right p{
     }
 
     .activity-photos .nft-list{
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         row-gap: 30px;
     }
 
@@ -673,289 +682,45 @@ footer .right p{
 .split-heading .char:nth-child(9) { transition-delay: 0.9s; }
 .split-heading .char:nth-child(10) { transition-delay: 1.0s; }
 
-/* 滑動按鈕 */
-.scroll-btn {
+/* Styling for the arrow buttons */
+.scroll-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     border: none;
+    border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 18px;
-    z-index: 2;
-    display: none; /* 初始隱藏 */
+    z-index: 10;
 }
 
 .scroll-left {
     left: 10px;
+    display: none; /* 初始隱藏左箭頭 */
 }
 
 .scroll-right {
     right: 10px;
 }
 
-.scroll-btn:hover {
-    background: rgba(255, 255, 255, 1);
-}
-
-/* 活動照片區域 - 修復右側 padding */
-.activity-photos-container {
-    width: 100%;
-    position: relative;
-    margin: 30px auto;
-    max-width: 1200px; /* 控制容器最大寬度 */
-    padding: 0 20px; /* 添加左右 padding */
-}
-
-.activity-photos {
-    width: 100%;
-    overflow: hidden; /* 隱藏超出部分 */
-    padding: 20px 0; /* 添加上下 padding */
-}
-
-.activity-photos .nft-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 固定4列 */
-    gap: 20px;
-    transition: transform 0.5s ease; /* 平滑滑動效果 */
-    width: 100%;
-    padding-right: 20px; /* 添加右側 padding */
-}
-
-.activity-photos .item {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    padding: 15px; /* 統一設置所有方向的 padding 為相同值 */
-    background-color: #fff; /* 添加背景色以便 padding 可見 */
-}
-
-.activity-photos .item:hover {
-    transform: translateY(-5px);
-}
-
-.activity-photos .item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    border-radius: 5px; /* 可選：為圖片添加圓角 */
-}
-
-/* 箭頭按鈕樣式 */
-.scroll-next-btn,
-.scroll-prev-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    /* transform: translateX(50%); */
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
-
-.scroll-next-btn {
-    right: -40px;
-}
-
-.scroll-prev-btn {
-    left: 0;
-    display: none; /* 初始隱藏左箭頭 */
-}
-
-.scroll-next-btn i,
-.scroll-prev-btn i {
+.scroll-arrow i {
     font-size: 24px;
     color: #333;
 }
 
-.scroll-next-btn:hover,
-.scroll-prev-btn:hover {
-    background: rgba(255, 255, 255, 1);
+/* 懸停效果 */
+.scroll-arrow:hover {
+    background-color: rgba(255, 255, 255, 1);
 }
 
-/* 響應式調整 */
-@media (max-width: 768px) {
-    .activity-photos .nft-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .activity-photos .nft-list {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-/* 活動照片區域的基本樣式 */
-.activity-photos-container {
-    width: 100%;
-    position: relative;
-    margin: 30px auto;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-.activity-photos {
-    width: 100%;
-    overflow: hidden;
-    padding: 20px 0;
-}
-
-.activity-photos .nft-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    transition: transform 0.5s ease;
-    width: 100%;
-    padding-right: 20px;
-}
-
-.activity-photos .item {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    padding: 15px;
-    background-color: #fff;
-}
-
-.activity-photos .item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    border-radius: 5px;
-}
-
-/* 箭頭按鈕樣式 */
-.scroll-next-btn,
-.scroll-prev-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
-
-.scroll-next-btn {
-    right: -20px;
-}
-
-.scroll-prev-btn {
-    left: -20px;
-    display: none; /* 初始隱藏左箭頭 */
-}
-
-/* 響應式設計 - 大型平板電腦 */
-@media screen and (max-width: 1024px) {
-    .activity-photos .nft-list {
-        grid-template-columns: repeat(3, 1fr); /* 3列 */
-    }
-    
-    .activity-photos-container {
-        max-width: 900px;
-    }
-    
-    .activity-photos .item img {
-        height: 180px; /* 稍微減小圖片高度 */
-    }
-}
-
-/* 響應式設計 - 平板電腦 */
-@media screen and (max-width: 768px) {
-    .activity-photos .nft-list {
-        grid-template-columns: repeat(2, 1fr); /* 2列 */
-    }
-    
-    .activity-photos-container {
-        max-width: 700px;
-        padding: 0 15px;
-    }
-    
-    .activity-photos .item {
-        padding: 12px;
-    }
-    
-    .activity-photos .item img {
-        height: 160px;
-    }
-    
-    .scroll-next-btn,
-    .scroll-prev-btn {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-/* 響應式設計 - 大型手機 */
-@media screen and (max-width: 576px) {
-    .activity-photos .nft-list {
-        grid-template-columns: repeat(1, 1fr); /* 1列 */
-        gap: 15px;
-    }
-    
-    .activity-photos-container {
-        padding: 0 10px;
-    }
-    
-    .activity-photos .item {
-        padding: 10px;
-    }
-    
-    .activity-photos .item img {
-        height: 200px; /* 在小屏幕上增加圖片高度以便更好地查看 */
-    }
-    
-    .scroll-next-btn,
-    .scroll-prev-btn {
-        width: 30px;
-        height: 30px;
-        top: auto;
-        bottom: -15px;
-        transform: none;
-    }
-    
-    .scroll-next-btn {
-        right: 10px;
-    }
-    
-    .scroll-prev-btn {
-        left: 10px;
-    }
-}
-
-/* 響應式設計 - 小型手機 */
-@media screen and (max-width: 375px) {
-    .activity-photos .item img {
-        height: 180px;
-    }
-    
-    .activity-photos .item {
-        padding: 8px;
-    }
+html {
+    scroll-behavior: smooth;
 }
 
 
