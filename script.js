@@ -1,20 +1,3 @@
-document.getElementById('view-more-btn').addEventListener('click', function() {
-    const hiddenItems = document.querySelectorAll('.sellers .item.hidden');
-    
-    if (this.textContent === 'View More') {
-        hiddenItems.forEach(item => {
-            item.classList.add('show');
-            
-        });
-        this.textContent = 'View Less';
-    } else {
-        hiddenItems.forEach(item => {
-            item.classList.remove('show');
-            
-        });
-        this.textContent = 'View More';
-    }
-});
 
 
 let slideIndex = 0;
