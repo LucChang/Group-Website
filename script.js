@@ -1,5 +1,3 @@
-
-
 let slideIndex = 0;
 showSlides();
 
@@ -45,48 +43,72 @@ document.addEventListener('DOMContentLoaded', function() {
   checkVisibility();
 });
 
-// 水平滑動照片區域的按鈕控制
+// 照片區域的按鈕控制
 document.addEventListener('DOMContentLoaded', function() {
     const nftList = document.querySelector('.activity-photos .nft-list');
     const leftArrow = document.querySelector('.scroll-arrow.scroll-left');
     const rightArrow = document.querySelector('.scroll-arrow.scroll-right');
     
     if (nftList && leftArrow && rightArrow) {
-        let scrollPosition = 0;
-        const itemWidth = 398; // 項目寬度 + 間距
-        const visibleItems = 3; // 可見項目數量
-        const totalItems = nftList.children.length;
-        const maxScroll = (totalItems - visibleItems) * itemWidth;
+        const items = nftList.children;
+        const visibleItems = 4;
+        let currentIndex = 0;
+        
+        // 初始顯示前4張照片
+        for (let i = 0; i < Math.min(visibleItems, items.length); i++) {
+            items[i].classList.add('active');
+        }
+        
+        // 初始隱藏左箭頭
+        leftArrow.style.display = 'none';
         
         // 如果項目數量不超過可見數量，隱藏右箭頭
-        if (totalItems <= visibleItems) {
+        if (items.length <= visibleItems) {
             rightArrow.style.display = 'none';
         }
         
-        // 向右滾動
+        // 向右切換
         rightArrow.addEventListener('click', function() {
-            if (scrollPosition < maxScroll) {
-                scrollPosition += itemWidth;
-                nftList.style.transform = `translateX(-${scrollPosition}px)`;
+            if (currentIndex + visibleItems < items.length) {
+                // 隱藏當前顯示的照片
+                for (let i = currentIndex; i < currentIndex + visibleItems; i++) {
+                    items[i].classList.remove('active');
+                }
+                
+                currentIndex++;
+                
+                // 顯示新的照片
+                for (let i = currentIndex; i < currentIndex + visibleItems; i++) {
+                    items[i].classList.add('active');
+                }
                 
                 // 顯示左箭頭
                 leftArrow.style.display = 'flex';
                 
                 // 如果到達最右側，隱藏右箭頭
-                if (scrollPosition >= maxScroll) {
+                if (currentIndex + visibleItems >= items.length) {
                     rightArrow.style.display = 'none';
                 }
             }
         });
         
-        // 向左滾動
+        // 向左切換
         leftArrow.addEventListener('click', function() {
-            if (scrollPosition > 0) {
-                scrollPosition -= itemWidth;
-                nftList.style.transform = `translateX(-${scrollPosition}px)`;
+            if (currentIndex > 0) {
+                // 隱藏當前顯示的照片
+                for (let i = currentIndex; i < currentIndex + visibleItems; i++) {
+                    items[i].classList.remove('active');
+                }
+                
+                currentIndex--;
+                
+                // 顯示新的照片
+                for (let i = currentIndex; i < currentIndex + visibleItems; i++) {
+                    items[i].classList.add('active');
+                }
                 
                 // 如果回到最左側，隱藏左箭頭
-                if (scrollPosition === 0) {
+                if (currentIndex === 0) {
                     leftArrow.style.display = 'none';
                 }
                 

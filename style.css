@@ -55,7 +55,8 @@ nav .links a:not(:last-child){
 }
 
 header{
-    padding: 0 100px;
+    padding: 100px;
+    padding-left: 200px;
     height: 80vh;
     display: flex;
     align-items: center;
@@ -114,13 +115,14 @@ header img{
     50% { border-color: orange; }
   }
 h2.separator{
-    padding: 0 80px;
-    font-size: 40px;
+    padding: 0 160px;
+    font-size: 50px;
     margin-top: 150px;
+    margin-bottom: 100px;
 }
 
 .sell-nft{
-    padding: 0 80px;
+    padding: 0 160px;
     width: 80%;
     margin: 50px 0 80px;
     display: flex;
@@ -129,10 +131,40 @@ h2.separator{
 }
 
 .about-us {    
-    padding: 0 80px;
+    padding: 0 160px;
     width: 80%;
     margin: 50px 0 80px;
     border-radius: 10px; /* 添加圓角 */
+}
+
+.sell-nft .item,
+.activity-photos .nft-list .item,
+.content-aboutme,
+.sellers .item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+}
+
+.sell-nft .item.animate,
+.activity-photos .nft-list .item.animate,
+.content-aboutme.animate,
+.sellers .item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 移除原有的動畫延遲 */
+.sell-nft .item:nth-child(1),
+.sell-nft .item:nth-child(2),
+.sell-nft .item:nth-child(3),
+.activity-photos .nft-list .item:nth-child(1),
+.activity-photos .nft-list .item:nth-child(2),
+.activity-photos .nft-list .item:nth-child(3),
+.sellers .item:nth-child(1),
+.sellers .item:nth-child(2),
+.sellers .item:nth-child(3) {
+    animation-delay: 0s;
 }
 
 .sell-nft .item{
@@ -143,8 +175,9 @@ h2.separator{
     transition: all 0.3s ease;
     width: 400px;
     height: 120px;
+    opacity: 1;
+    transform: translateY(0);
 }
-
 
 .activity-photos .nft-list .item,  .content-aboutme{
     padding: 20px;
@@ -152,6 +185,9 @@ h2.separator{
     border-radius: 18px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-in forwards;
 }
 .slideshow-container {
     position: relative;
@@ -226,11 +262,11 @@ h2.separator{
 }
 
 .activity-photos {
-    margin: 30px auto; /* 上下間距30px，左右自動（即置中） */
+    margin: 30px auto;
     padding: 0;
     position: relative;
-    width: calc(378px * 3 + 40px); /* 容納三個項目的寬度加間距 */
-    overflow: hidden; /* 隱藏超出部分 */
+    width: calc(378px * 4 + 60px);
+    overflow: hidden;
 }
 
 .activity-photos .nft-list {
@@ -238,19 +274,22 @@ h2.separator{
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 20px;
-    transition: transform 0.5s ease; /* 平滑過渡效果 */
-    width: max-content; /* 允許容器寬度自適應內容 */
+    width: max-content;
 }
 
 .activity-photos .nft-list .item {
-    flex: 0 0 378px; /* 固定寬度，不縮放 */
+    flex: 0 0 378px;
     height: 480px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
     padding: 15px;
     background-color: #fff;
+    display: none; /* 預設隱藏所有項目 */
+}
+
+.activity-photos .nft-list .item.active {
+    display: block; /* 顯示當前活動的項目 */
 }
 
 .activity-photos .nft-list .item img {
@@ -339,7 +378,7 @@ h2.separator{
 }
 
 .sellers{
-    padding: 0 80px;
+    padding: 0 160px;
     margin: 40px 0 20px;
     display: flex;
     justify-content: space-between;
@@ -359,6 +398,9 @@ h2.separator{
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-in forwards;
 }
 
 .sellers .item img{
@@ -702,7 +744,6 @@ footer .right p{
 
 .scroll-left {
     left: 10px;
-    display: none; /* 初始隱藏左箭頭 */
 }
 
 .scroll-right {
@@ -722,6 +763,29 @@ footer .right p{
 html {
     scroll-behavior: smooth;
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sell-nft .item:nth-child(1) { animation-delay: 0.2s; }
+.sell-nft .item:nth-child(2) { animation-delay: 0.4s; }
+.sell-nft .item:nth-child(3) { animation-delay: 0.6s; }
+
+.activity-photos .nft-list .item:nth-child(1) { animation-delay: 0.2s; }
+.activity-photos .nft-list .item:nth-child(2) { animation-delay: 0.4s; }
+.activity-photos .nft-list .item:nth-child(3) { animation-delay: 0.6s; }
+
+.sellers .item:nth-child(1) { animation-delay: 0.2s; }
+.sellers .item:nth-child(2) { animation-delay: 0.4s; }
+.sellers .item:nth-child(3) { animation-delay: 0.6s; }
 
 
 
