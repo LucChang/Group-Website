@@ -43,6 +43,28 @@ document.addEventListener('DOMContentLoaded', function() {
   checkVisibility();
 });
 
+// Add separator animation
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2  // 當元素進入視窗 80% 時觸發
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // 動畫只觸發一次
+            }
+        });
+    }, observerOptions);
+
+    // 選擇所有 separator 元素
+    const separators = document.querySelectorAll('.separator');
+    separators.forEach(separator => observer.observe(separator));
+});
+
 // 照片區域的按鈕控制
 document.addEventListener('DOMContentLoaded', function() {
     const nftList = document.querySelector('.activity-photos .nft-list');
@@ -127,5 +149,20 @@ document.querySelectorAll('nav a').forEach(anchor => {
             behavior: 'smooth' // 平滑滾動
         });
     });
+});
+
+// Add scroll animation
+document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll('.item');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = "easeInUp 1s forwards";
+            }
+        });
+    });
+
+    items.forEach(item => observer.observe(item));
 });
 
