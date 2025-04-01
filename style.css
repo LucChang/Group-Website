@@ -140,6 +140,15 @@ h2.separator {
   margin: 50px 0 80px;
   border-radius: 10px;
 }
+.about-us .about-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.about-us .about-header i {
+  font-size: 20px;
+}
 
 .sell-nft .item,
 .activity-photos .nft-list .item,
@@ -264,18 +273,18 @@ h2.separator {
   box-shadow: none;
 }
 
-.sell-nft .item .header {
+.sell-nft .item-box .item-header {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.sell-nft .item .header i {
-  font-size: 40px;
+.sell-nft .item-box .item-header i {
+  font-size: 30px;
 }
 
-.sell-nft .item .header h5 {
-  font-size: 17px;
+.sell-nft .item-box .item-header h5 {
+  font-size: 19px;
 }
 
 .sell-nft .item p {
@@ -513,14 +522,12 @@ footer .right p {
   font-size: 2rem;
 }
 .item-box {
+  display: flex;
   width: 100%;
   height: 100%;
+  min-height: 200px; 
   background: #fff;
-
-  padding: 1rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  display: flex;
+  padding: 2rem;
   flex-direction: column;
   gap: 1.5rem;
   border-radius: 1rem;
@@ -976,6 +983,7 @@ html {
   flex: 1;
 }
 
+
 .news-date {
   color: #666;
   font-size: 14px;
@@ -1015,6 +1023,7 @@ html {
 
 .news-date h3 {
   color: #2ecc71;
+  font-size: 1.2rem;
 }
 
 /* Add at the end of your CSS file */
